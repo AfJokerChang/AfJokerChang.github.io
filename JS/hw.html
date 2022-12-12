@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/reset.css">
+    <style>
+        .all {
+            width: 1000px;
+            margin: auto;
+        }
+
+        .number1 {
+            width: 350px;
+            background-color: white;
+            color: black;
+            margin: auto;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        button {
+            width: 100px;
+            height: 100px;
+            font-size: 30px;
+        }
+
+        .theme {
+            background-color: rgb(80, 79, 79);
+            color: red;
+            text-align: center;
+            font-size: 50px;
+            margin: 50px 20px 20px 20px;
+            font-weight: 900;
+        }
+
+        .txt {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        input {
+            padding-left: 120px;
+            padding-top: 50px;
+        }
+
+        .game {
+            display: flex;
+        }
+
+        /* .go button {
+            border-radius: 50%;
+        } */
+
+        .go {
+            width: 0;
+            margin: 50px 50px 20px 50px;
+            flex-grow: 1;
+            text-align: center
+        }
+
+        span {
+            padding-top: 85px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="theme">挑戰吧!最嚴苛的遊戲</header>
+    <div class="all">
+        <div class="txt">
+            <input type="text" id="num-input" onkeyup="CheckNumbaer(this)">
+        </div>
+        <div class="game">
+            <div class="go">
+                <button class="game-play">play</button>
+            </div>
+            <span>請猜1-100內的數字</span>
+
+            <div class="go">
+                <button class="res">reset</button>
+            </div>
+        </div>
+        <div class="number1">
+            <button class="number">1</button>
+            <button class="number">2</button>
+            <button class="number">3</button>
+            <button class="number">4</button>
+            <button class="number">5</button>
+            <button class="number">6</button>
+            <button class="number">7</button>
+            <button class="number">8</button>
+            <button class="number">9</button>
+            <button class="cancel">C</button>
+            <button class="number">0</button>
+            <button class="enter">Enter</button>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        let oneOne = 0
+        let min = 1
+        let max = 100
+        function getRandomIntInclusive(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        let play = document.querySelector('.game-play')
+        play.addEventListener('click', function () {
+            let one = getRandomIntInclusive(1, 100)
+            console.log(one)
+            oneOne = one
+        })
+        // ----------------------
+        let myinput = document.querySelector('#num-input')
+        let mybtn = document.querySelectorAll('.number')
+        mybtn.forEach(x => {
+            x.addEventListener('click', function () {
+                myinput.value += x.innerHTML
+                if (myinput.value > max) {
+                    alert('不符合範圍')
+                }
+            })
+        });
+        function CheckNumbaer(obj) {
+            var re = /^[0-9]*$/;
+            if (!re.test(obj.value)) {
+                alert('請輸入數字');
+                return false;
+            }
+        }
+        // ----------------------
+        let myspan = document.querySelector('span')
+        let again = document.querySelector('.res')
+        again.addEventListener('click', function () {
+            oneOne = getRandomIntInclusive(1, 100)
+            console.log(oneOne)
+            myinput.value = ''
+            myspan.innerText = '請猜1-100內的數字'
+        })
+        // ----------------------
+        let cancelbtn = document.querySelector('.cancel')
+        cancelbtn.addEventListener('click', function () {
+            myinput.value = ''
+        })
+        // ----------------------
+        let en = document.querySelector('.enter')
+        en.addEventListener('click', function () {
+            let result = myinput.value
+            if (myinput.value < max && myinput.value > 0) {
+                if (result < oneOne) {
+                    min = result
+                }
+                else if (result > oneOne) {
+                    max = result
+                }
+                else if (result == oneOne) {
+                    window.alert('恭喜你通過考驗')
+                }
+                myspan.innerText = `請猜${min}-${max}內的數字`
+                myinput.value = ''
+            }
+            myspan.innerText = `請猜${min}-${max}內的數字`
+            myinput.value = ''
+        })
+    </script>
+</body>
+
+</html>
