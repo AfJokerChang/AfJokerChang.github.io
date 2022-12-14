@@ -50,11 +50,6 @@
         .game {
             display: flex;
         }
-
-        /* .go button {
-            border-radius: 50%;
-        } */
-
         .go {
             width: 0;
             margin: 50px 50px 20px 50px;
@@ -124,9 +119,6 @@
         mybtn.forEach(x => {
             x.addEventListener('click', function () {
                 myinput.value += x.innerHTML
-                if (myinput.value > max) {
-                    alert('不符合範圍')
-                }
             })
         });
         function CheckNumbaer(obj) {
@@ -143,7 +135,10 @@
             oneOne = getRandomIntInclusive(1, 100)
             console.log(oneOne)
             myinput.value = ''
-            myspan.innerText = '請猜1-100內的數字'
+            max = 100
+            min = 1
+            myspan.innerText = `請猜${min}-${max}內的數字`
+
         })
         // ----------------------
         let cancelbtn = document.querySelector('.cancel')
@@ -154,7 +149,7 @@
         let en = document.querySelector('.enter')
         en.addEventListener('click', function () {
             let result = myinput.value
-            if (myinput.value < max && myinput.value > 0) {
+            if (myinput.value < max && myinput.value > min) {
                 if (result < oneOne) {
                     min = result
                 }
@@ -165,12 +160,13 @@
                     window.alert('恭喜你通過考驗')
                 }
                 myspan.innerText = `請猜${min}-${max}內的數字`
-                myinput.value = ''
             }
-            myspan.innerText = `請猜${min}-${max}內的數字`
+            if (myinput.value > max || myinput.value < min){
+                window.alert('不符合範圍')
+            }
             myinput.value = ''
+
         })
     </script>
 </body>
-
 </html>
