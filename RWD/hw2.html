@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>導覽列</title>
+    <link rel="stylesheet" href="/reset.css">
+    <style>
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: green;
+            position: relative;
+        }
+
+        /* 外部開關 */
+        #menu-control {
+            display: none;
+        }
+
+        .logo img {
+            width: 80px;
+            height: 50px;
+            vertical-align: middle;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: black;
+            /* padding: 10px; */
+        }
+
+        .nav-li {
+            list-style: none;
+            padding: 10px;
+        }
+
+        /* 內部開關 */
+        #about {
+            display: none;
+        }
+
+        #sever {
+            display: none;
+        }
+
+        #problem {
+            display: none;
+        }
+
+        #us {
+            display: none;
+        }
+
+        .main-nav {
+            display: flex;
+        }
+
+        @media screen and (width < 768px) {
+            .HB {
+                width: 40px;
+                height: 40px;
+                background-color: yellow;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+            }
+
+            .HB span {
+                width: 80%;
+                height: 2px;
+                background-color: black;
+            }
+
+            #menu-control:checked+.main-header .HB {
+                background-color: green;
+            }
+
+            #menu-control:checked+.main-header .HB span:nth-child(2) {
+                transform: rotate(45deg);
+                /* height: 10px; */
+                width: 50px;
+            }
+
+            #menu-control:checked+.main-header .HB span:nth-child(3) {
+                transform: rotate(-45deg);
+                width: 50px;
+
+            }
+
+            #menu-control:checked+.main-header .HB span:nth-child(1) {
+                display: none;
+            }
+
+            /* 把nav彈出來 */
+            #menu-control:checked~.main-header .main-nav {
+                display: block;
+            }
+
+            /* ---------------------- */
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: rgb(7, 185, 117);
+            }
+
+            .main-nav a {
+                display: block;
+                /* padding: 10px; */
+                text-decoration: none;
+                color: black;
+                text-align: center;
+            }
+
+            /* ---------------------- */
+
+            /* 把nav內層東西彈出來 */
+            #about:checked~.main-nav .nav-li .nav-li-a {
+                display: block;
+            }
+
+            #sever:checked~.main-nav .nav-li .nav-li-b {
+                display: block;
+            }
+
+            #problem:checked~.main-nav .nav-li .nav-li-c {
+                display: block;
+            }
+
+            #us:checked~.main-nav .nav-li .nav-li-d {
+                display: block;
+            }
+
+            .nav-li-a {
+                display: none;
+            }
+
+            .nav-li-b {
+                display: none;
+            }
+
+            .nav-li-c {
+                display: none;
+            }
+
+            .nav-li-d {
+                display: none;
+            }
+        }
+
+        @media screen and (width >=768px) {
+            .nav-li {
+                position: relative;
+            }
+
+            .nav-li-a {
+                display: flex;
+                display: block;
+                display: none;
+            }
+
+            .nav-li-b {
+                display: flex;
+                display: block;
+                display: none;
+            }
+
+            .nav-li-c {
+                display: flex;
+                display: block;
+                display: none;
+            }
+
+            .nav-li-d {
+                display: flex;
+                display: block;
+                display: none;
+            }
+
+            .nav-li:hover .nav-li-a {
+                display: block;
+                padding: 10px;
+
+            }
+
+            .nav-li:hover .nav-li-b {
+                display: block;
+                padding: 10px;
+            }
+
+            .nav-li:hover .nav-li-c {
+                display: block;
+                padding: 10px;
+            }
+
+            .nav-li:hover .nav-li-d {
+                display: block;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" id="menu-control">
+
+    <header class="main-header">
+        <!-- -------------------------->
+        <div class="logo">
+            <h1>
+                <img src="/RWD/富富.jpg" alt="">
+            </h1>
+        </div>
+        <!-- -------------------------->
+        <label for="menu-control" class="HB">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <!-- -------------------------->
+        <input type="checkbox" id="about">
+        <input type="checkbox" id="sever">
+        <input type="checkbox" id="problem">
+        <input type="checkbox" id="us">
+        <nav class="main-nav">
+            <a href="#">首頁</a>
+            <ul>
+                <label for="about" class="nav-li">關於富富
+                    <ul class="nav-li-a">
+                        <a href="#">富富由來</a>
+                    </ul>
+                </label>
+            </ul>
+            <ul>
+                <label for="sever" class="nav-li">服務項目
+                    <ul class="nav-li-b">
+                        <a href="#">財商觀念</a><br>
+                        <a href="#">資產配置</a><br>
+                        <a href="#">加密貨幣操盤</a><br>
+                        <a href="#">外匯操盤</a>
+                    </ul>
+                </label>
+            </ul>
+            <ul>
+                <label for="problem" class="nav-li">常見問題
+                    <ul class="nav-li-c">
+                        <a href="#">小資族可以操盤?</a><br>
+                        <a href="#">加密貨幣是否穩定?</a><br>
+                        <a href="#">NFT是什麼?</a>
+                    </ul>
+                </label>
+            </ul>
+            <ul>
+                <label for="us" class="nav-li">聯絡我們
+                    <ul class="nav-li-d">
+                        <a href="#">Meta</a><br>
+                        <a href="#">ig</a>
+                    </ul>
+                </label>
+            </ul>
+
+        </nav>
+    </header>
+
+
+
+</body>
+
+</html>
