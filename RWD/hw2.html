@@ -11,13 +11,16 @@
             margin: 0;
             padding: 0;
         }
-
+        .nav-li-div{
+            color: #fff;
+            font-size: 22px;
+        }
         .main-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px;
-            background-color: green;
+            /* padding: 10px; */
+            background-color: rgb(120, 167, 120);
             position: relative;
         }
 
@@ -34,10 +37,10 @@
 
         .main-nav a {
             text-decoration: none;
-            color: black;
+            color: #fff;
         }
 
-        .nav-li {
+        .nav-li-div {
             list-style: none;
             padding: 30px;
         }
@@ -51,7 +54,7 @@
             display: flex;
         }
 
-        @media screen and (width < 768px) {
+        @media screen and (max-width: 768px) {
             .HB {
                 width: 40px;
                 height: 40px;
@@ -64,7 +67,7 @@
             .HB span {
                 width: 80%;
                 height: 2px;
-                background-color: black;
+                background-color: #fff;
             }
 
             #menu-control:checked+.main-header .HB span:nth-child(2) {
@@ -93,29 +96,29 @@
                 top: 100%;
                 left: 0;
                 right: 0;
-                background-color: rgb(7, 185, 117);
+                background-color: rgb(102, 156, 135);
             }
 
             .main-nav a {
                 display: block;
                 text-decoration: none;
-                color: black;
+                color: #fff;
+                font-size: 22px;
             }
             .main-nav-a{
                 padding: 30px;
             }
 
             /* ---------------------- */
-
+            
             /* 把nav內層東西彈出來 */
             #about:checked~.main-nav .nav-li .nav-li-a {
-                display: block;
+                display: block; 
             }
 
             #sever:checked~.main-nav .nav-li .nav-li-b {
                 display: block;
             }
-
             #problem:checked~.main-nav .nav-li .nav-li-c {
                 display: block;
             }
@@ -123,10 +126,16 @@
             #us:checked~.main-nav .nav-li .nav-li-d {
                 display: block;
             }
+
             .nav-li-a,.nav-li-b,.nav-li-c,.nav-li-d{
                 display: none;
+                position: absolute;
+                top: 100%;
+                text-align: center;
             }
-
+            .nav-li-a, .nav-li-d{
+                padding-left: 30px;
+            }
             .main-nav-ul {
                 justify-content: space-between;
                 display: flex;
@@ -136,16 +145,45 @@
             .main-nav-ul .nav-plus {
                 font-size: 30px;
                 font-weight: 300;
+                color: #fff;
+                padding-right: 20px;
             }
+            .plue,.plue2,.plue3,.plue4{
+                display: none;
+            }
+            
+            .main-nav-ul{
+                position: relative;
+            }
+            
+            #about:checked~.main-nav .plue{
+                height: 29.6px;
+                display: block;
+            }
+            #sever:checked~.main-nav .plue2{
+                height: 173.6px;
+                display: block;
+            }
+            
+            #problem:checked~.main-nav .plue3{
+                height: 125.6px;
+                display: block;
+            }
+            
+            #us:checked~.main-nav .plue4{
+                height: 69.6px;
+                display: block;
+            }
+
         }
 
-        @media screen and (width >=768px) {
+        @media screen and (min-width: 769px) {
             body {
                 position: relative;
             }
             /* 把底下拉大 */
             .nav-li{
-                padding-bottom: 25px;
+                margin-bottom: 40px;
                 text-align: center;
             }
             .nav-li-a,.nav-li-b,.nav-li-c,.nav-li-d{
@@ -153,17 +191,31 @@
                 display: none;
                 position: absolute;
                 top: 100%;
-                width: 124px;
-                background-color: rgb(33, 214, 33);
+                width: 148px;
+                background-color:  rgb(102, 156, 135);
+                line-height: 3;
             }
-            
-            .nav-li:hover .nav-li-a,.nav-li:hover .nav-li-b,
-            .nav-li:hover .nav-li-c,.nav-li:hover .nav-li-d{
+            .main-nav-ul:hover .nav-li-a, .main-nav-ul:hover .nav-li-b,
+            .main-nav-ul:hover .nav-li-c,.main-nav-ul:hover .nav-li-d{
                 display: block;
             }
+            
+            /* .nav-li:hover .nav-li-a,.nav-li:hover .nav-li-b,
+            .nav-li:hover .nav-li-c,.nav-li:hover .nav-li-d{
+                display: block;
+            } */
 
             .main-nav-ul .nav-plus {
                 display: none;
+            }
+            .main-nav-a{
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+                font-size: 22px;
+            }
+            .main-header .main-nav .main-nav-ul:hover{
+                display: block;
             }
         }
     </style>
@@ -176,7 +228,7 @@
         <!-- -------------------------->
         <div class="logo">
             <h1>
-                <img src="/富富.jpg" alt="">
+                <img src="./富富.jpg" alt="">
             </h1>
         </div>
         <!-- -------------------------->
@@ -193,17 +245,21 @@
         <nav class="main-nav">
             <a href="#" class="main-nav-a">首頁</a>
             <ul class="main-nav-ul">
-                <label for="about" class="nav-li">關於富富
+                <label for="about" class="nav-li">
+                    <div class="nav-li-div">關於富富</div> 
                     <ul class="nav-li-a">
                         <a href="#">富富由來</a>
                     </ul>
                 </label>
+                
                 <label for="about" class="nav-plus">
                     <span>+</span>
                 </label>
             </ul>
+            <div class="plue"></div>
             <ul class="main-nav-ul">
-                <label for="sever" class="nav-li">服務項目
+                <label for="sever" class="nav-li">
+                   <div class="nav-li-div">服務項目</div> 
                     <ul class="nav-li-b">
                         <a href="#">財商觀念</a><br>
                         <a href="#">資產配置</a><br>
@@ -215,8 +271,10 @@
                     <span>+</span>
                 </label>
             </ul>
+            <div class="plue2"></div>
             <ul class="main-nav-ul">
-                <label for="problem" class="nav-li">常見問題
+                <label for="problem" class="nav-li">
+                   <div class="nav-li-div">常見問題</div> 
                     <ul class="nav-li-c">
                         <a href="#">小資族可以操盤?</a><br>
                         <a href="#">虛擬幣是否穩定?</a><br>
@@ -225,8 +283,10 @@
                 </label>
                 <label for="problem" class="nav-plus">+</label>
             </ul>
+            <div class="plue3"></div>
             <ul class="main-nav-ul">
-                <label for="us" class="nav-li">聯絡我們
+                <label for="us" class="nav-li">
+                   <div class="nav-li-div">聯絡我們</div> 
                     <ul class="nav-li-d">
                         <a href="https://www.facebook.com/profile.php?id=100068625341545">Meta</a><br>
                         <a href="https://www.instagram.com/double.wealth/">ig</a>
@@ -234,7 +294,7 @@
                 </label>
                 <label for="us" class="nav-plus">+</label>
             </ul>
-
+            <div class="plue4"></div>
         </nav>
     </header>
 
