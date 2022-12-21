@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+        }
+
+        .main {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        .color {
+            width: 105px;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        .red {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: red;
+
+        }
+
+        .blue-gray {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgb(193, 199, 209);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Altis360度賞車</h1>
+    <div class="main">
+        <button class="btn-left">左</button>
+        <div id="container"><img src="" alt=""></div>
+        <button class="btn-right">右</button>
+    </div>
+    <div class="color">
+        <button class="blue-gray"></button>
+        <button class="red"></button>
+
+    </div>
+
+
+
+    <script>
+        let carArry = [];
+        for (i = 1; i <= 60; i++) {
+            let images = `./AltisImg/AltisGray/360EXT_1_18_${i}.png`;
+            carArry.push(images);
+        }
+        let red = document.querySelector(".red");
+        let blueGray = document.querySelector(".blue-gray")
+
+
+        window.onload = function () {
+            let container = document.querySelector("#container img")
+            let btnLeft = document.querySelector(".btn-left")
+            let index = 0;
+            container.src = carArry[index]
+
+            //左右轉----------------------------
+            btnLeft.addEventListener('click', function () {
+                if (index === 59) { index = 0 }
+                else {
+                    index++;
+                }
+                container.src = carArry[index]
+            });
+            index = 59;
+            let btnRight = document.querySelector(".btn-right")
+            btnRight.addEventListener('click', function () {
+
+                if (index == 0) {
+                    index = 59
+                }
+                else {
+                    index--;
+                }
+                container.src = carArry[index]
+            })
+            //換色-----------------------
+            blueGray.addEventListener('click', function () {
+                carArry = [];
+                for (i = 1; i <= 60; i++) {
+                     images = `./AltisImg/AltisGray/360EXT_1_18_${i}.png`;
+                    carArry.push(images);
+                    container.src = carArry[index]
+                }
+            })
+            red.addEventListener('click', function () {
+                carArry = [];
+                for (i = 1; i <= 60; i++) {
+                     images = `./AltisImg/AltisRed/360EXT_1_22_${i}.png`;
+                    carArry.push(images);
+                    container.src = carArry[index]
+                }
+            })
+        } 
+
+    </script>
+</body>
+
+</html>
