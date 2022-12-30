@@ -162,7 +162,9 @@
             let c = intersectionArr.filter(x => ansArr.indexOf(x) == gusArr.indexOf(x)).length
 
             let d = intersectionArr.length - c
-
+            if(c ==4){
+                alert('恭喜破關')
+            }
             span.append(`${c}A${d}B  `, input.value);
 
             let qqq = document.createElement('br')
