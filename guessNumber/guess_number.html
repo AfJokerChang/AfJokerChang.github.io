@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/MAIKON/grid.css">
     <title>Document</title>
     <style>
         .main,
@@ -47,18 +48,18 @@
 
 <body>
     <div class="container">
-        <div class="main">
-            <button class="go">Go</button>
-            <button class="reset">Reset</button>
-            <button class="answer">Answer</button>
-        </div>
-        <div class="see">
-            <span></span>
-        </div>
-        <div class="game">
-            <input type="text" class="input">
-            <button class=" guess">guess</button>
-        </div>
+            <div class=" col-12 main">
+                <button class="go">Go</button>
+                <button class="reset">Reset</button>
+                <button class="answer">Answer</button>
+            </div>
+            <div class="col-12 see">
+                <span></span>
+            </div>
+            <div class="col-12 game">
+                <input type="text" class="input">
+                <button class=" guess">guess</button>
+            </div>
     </div>
     <script>
         let go = document.querySelector(".go")
@@ -141,12 +142,12 @@
                 alert('請輸入四個數字')
                 input.value = '';
                 return false;
-            }else if(checkRepeat !==4){
+            } else if (checkRepeat !== 4) {
                 alert('請輸入四個不一樣的數字')
                 input.value = '';
                 return false;
             }
-            
+
             // ----------------------------------------------------------
 
             //猜的數字塞到陣列(因為一開始是一組數字索引0)
