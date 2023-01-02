@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn {
+            border: 1px solid black;
+            background-color: rgb(48, 216, 202);
+            margin: 10px;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        span {
+            display: block;
+        }
+
+
+        .square {
+            width: 100px;
+            height: 100px;
+
+        }
+
+        .item-color {
+            /* background-color: blue; */
+        }
+
+        .img {
+            width: 500px;
+            margin-top: 50px;
+            margin-right: 200px;
+        }
+
+        .color-blue {
+            background-color: rgb(130, 195, 248);
+            border-radius: 100px;
+            width: 50px;
+            height: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .color-purple {
+            background-color: rgb(168, 76, 190);
+            border-radius: 100px;
+            width: 50px;
+            height: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .color-black {
+            background-color: black;
+            border-radius: 100px;
+            width: 50px;
+            height: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <button type="button" class="btn ">iphone</button>
+        <button type="button" class="btn ">ipad</button>
+        <button type="button" class="btn ">Mac</button>
+    </div>
+    <div class="main">
+        <!-- <div><img src="" class="img"></div>
+        <div class="">
+            <div class="item">
+                <span></span>
+                <Button class="item-color"></Button>
+                <Button class="item-color"></Button>
+                <Button class="item-color"></Button>
+            </div>
+            <div class="item">
+                <span></span>
+                <Button class="item-norm"></Button>
+                <Button class="item-norm"></Button>
+                <Button class="item-norm"></Button>
+            </div>
+            <div class="item">
+                <span></span>
+                <span></span>
+            </div>
+        </div> -->
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script>
+        let appleData = [
+            {
+                name: 'iphone14', mode:
+                    [{ id: 'A0001', color: '藍色', Specification: '128GB', price: 'NT$27,900', img:'./iphone-14-storage-select-202209-6-1inch-blue.jpg' },
+                    { id: 'A0002', color: '藍色', Specification: '256GB', price: 'NT$31,400', img:'./iphone-14-storage-select-202209-6-1inch-blue.jpg' },
+                    { id: 'A0003', color: '藍色', Specification: '512GB', price: 'NT$38,400', img:'./iphone-14-storage-select-202209-6-1inch-blue.jpg' },
+                    { id: 'A0004', color: '紫色', Specification: '128GB', price: 'NT$27,900', img:'./iphone-14-finish-select-202209-6-1inch-purple.jpg' },
+                    { id: 'A0005', color: '紫色', Specification: '256GB', price: 'NT$31,400', img:'./iphone-14-finish-select-202209-6-1inch-purple.jpg' },
+                    { id: 'A0006', color: '紫色', Specification: '512GB', price: 'NT$38,400', img:'./iphone-14-finish-select-202209-6-1inch-purple.jpg' },
+                    { id: 'A0007', color: '黑色', Specification: '128GB', price: 'NT$27,900', img:'./iphone-14-finish-select-202209-6-1inch-midnight.jpg' },
+                    { id: 'A0008', color: '黑色', Specification: '256GB', price: 'NT$31,400', img:'./iphone-14-finish-select-202209-6-1inch-midnight.jpg' },
+                    { id: 'A0009', color: '黑色', Specification: '512GB', price: 'NT$38,400', img:'./iphone-14-finish-select-202209-6-1inch-midnight.jpg' },
+                    { id: 'A0010', color: '白色', Specification: '128GB', price: 'NT$27,900', img:'./iphone-14-finish-select-202209-6-1inch-starlight.jpg' },
+                    { id: 'A0011', color: '白色', Specification: '256GB', price: 'NT$31,400', img:'./iphone-14-finish-select-202209-6-1inch-starlight.jpg' },
+                    { id: 'A0012', color: '白色', Specification: '512GB', price: 'NT$38,400', img:'./iphone-14-finish-select-202209-6-1inch-starlight.jpg' },
+                    { id: 'A0013', color: '紅色', Specification: '128GB', price: 'NT$27,900', img:'./iphone-14-finish-select-202209-6-1inch-product-red.jpg' },
+                    { id: 'A0014', color: '紅色', Specification: '256GB', price: 'NT$31,400', img:'./iphone-14-finish-select-202209-6-1inch-product-red.jpg' },
+                    { id: 'A0015', color: '紅色', Specification: '512GB', price: 'NT$38,400', img:'./iphone-14-finish-select-202209-6-1inch-product-red.jpg' }]
+            },
+
+            {
+                name: 'iphone14-plus',
+                mode: [{ id: 'A0001', color: 'blue', Specification: '128GB', price: 'NT$31,900' },
+                { id: 'A0002', color: 'blue', Specification: '256GB', price: 'NT$35,400' },
+                { id: 'A0003', color: 'blue', Specification: '512GB', price: 'NT$42,400' },
+                { id: 'A0004', color: 'purple', Specification: '128GB', price: 'NT$31,900' },
+                { id: 'A0005', color: 'purple', Specification: '256GB', price: 'NT$35,400' },
+                { id: 'A0006', color: 'purple', Specification: '512GB', price: 'NT$42,400' },
+                { id: 'A0007', color: 'black', Specification: '128GB', price: 'NT$31,900' },
+                { id: 'A0008', color: 'black', Specification: '256GB', price: 'NT$35,400' },
+                { id: 'A0009', color: 'black', Specification: '512GB', price: 'NT$42,400' },
+                { id: 'A0010', color: 'white', Specification: '128GB', price: 'NT$31,900' },
+                { id: 'A0011', color: 'white', Specification: '256GB', price: 'NT$35,400' },
+                { id: 'A0012', color: 'white', Specification: '512GB', price: 'NT$42,400' },
+                { id: 'A0013', color: 'red', Specification: '128GB', price: 'NT$31,900' },
+                { id: 'A0014', color: 'red', Specification: '256GB', price: 'NT$35,400' },
+                { id: 'A0015', color: 'red', Specification: '512GB', price: 'NT$42,400' }]
+            },
+
+            {
+                name: 'ipad', mode: 
+                [{ id: 'A0001', color: '藍色', Specification: '64GB', network: 'WI-FI', price: 'NT$14,900', img:'./ipad-10th-gen-storage-select-202212-blue.jpg' },
+                { id: 'A0002', color: '藍色', Specification: '64GB', network: '5G', price: 'NT$19,900', img:'./ipad-10th-gen-storage-select-202212-blue.jpg' },
+                { id: 'A0003', color: '藍色', Specification: '256GB', network: 'WI-FI', price: 'NT$19,900', img:'./ipad-10th-gen-storage-select-202212-blue.jpg' },
+                { id: 'A0004', color: '藍色', Specification: '256GB', network: '5G', price: 'NT$24,900', img:'./ipad-10th-gen-storage-select-202212-blue.jpg' },
+                { id: 'A0005', color: 'pink', Specification: '64GB', network: 'WI-FI', price: 'NT$14,900' },
+                { id: 'A0006', color: 'pink', Specification: '64GB', network: '5G', price: 'NT$19,900' },
+                { id: 'A0007', color: 'pink', Specification: '256GB', network: 'WI-FI', price: 'NT$19,900' },
+                { id: 'A0008', color: 'pink', Specification: '256GB', network: '5G', price: 'NT$24,900' },
+                { id: 'A0009', color: 'silver', Specification: '64GB', network: 'WI-FI', price: 'NT$14,900' },
+                { id: 'A0010', color: 'silver', Specification: '256GB', network: '5G', price: 'NT$19,900' },
+                { id: 'A0011', color: 'silver', Specification: '64GB', network: 'WI-FI', price: 'NT$19,900' },
+                { id: 'A0012', color: 'silver', Specification: '256GB', network: '5G', price: 'NT$24,900' },
+                { id: 'A0013', color: 'yellow', Specification: '64GB', network: 'WI-FI', price: 'NT$14,900' },
+                { id: 'A0014', color: 'yellow', Specification: '256GB', network: '5G', price: 'NT$19,900' },
+                { id: 'A0015', color: 'yellow', Specification: '64GB', network: 'WI-FI', price: 'NT$19,900' },
+                { id: 'A0016', color: 'yellow', Specification: '256GB', network: '5G', price: 'NT$24,900' }]
+            },
+
+
+            {
+                name: 'Mac-13', mode: [{ id: 'A0001', color: 'spacegray', Specification: '256GB', price: 'NT$39,900' },
+                { id: 'A0002', color: 'spacegray', Specification: '512GB', price: 'NT$45,900' },
+                { id: 'A0003', color: 'spacegray', Specification: '1TB', price: 'NT$51,900' },
+                { id: 'A0004', color: 'spacegray', Specification: '2TB', price: 'NT$63,900' },
+                { id: 'A0005', color: 'silver', Specification: '256GB', price: 'NT$39,900' },
+                { id: 'A0006', color: 'silver', Specification: '512GB', price: 'NT$45,900' },
+                { id: 'A0007', color: 'silver', Specification: '1TB', price: 'NT$51,900' },
+                { id: 'A0008', color: 'silver', Specification: '2TB', price: 'NT$63,900' },]
+            }
+
+        ]
+        let btn = document.querySelectorAll('.btn')
+        let main = document.querySelector('.main')
+        let proArr = ['顏色', '規格', '價格試算', '']
+
+        let picAll = ['./iphone-14-model-unselect-gallery-1-202209.jpg', './hero__ecv967jz1y82_large.jpg', './mbp-spacegray-select-202206_GEO_TW.jpg']
+        btn.forEach((x, index) => {
+            x.addEventListener('click', function () {
+                //每案一次，清除上筆資料
+                document.querySelector('.main').innerHTML = '';
+                
+                //生成
+                let img = document.createElement('img')
+                img.src = picAll[index]
+                let containerTwo = document.createElement('div')
+
+                let item = [document.createElement('div'), document.createElement('div')]
+                let itemBottom = document.createElement('div')
+                let span = [document.createElement('span'), document.createElement('span'), document.createElement('span'), document.createElement('span')]
+                //按鈕
+                let color = [document.createElement('button'), document.createElement('button')]
+                let norm = [document.createElement('button'), document.createElement('button')]
+                let colorOne = [document.createElement('button'), document.createElement('button')]
+
+                let mainColor = [document.createElement('div'), document.createElement('div'), document.createElement('div')]
+
+                //加class設CSS
+                img.classList.add('img')
+
+
+                //加入main區塊裡
+                main.append(img)
+                main.append(containerTwo)
+                item.forEach((x, index) => {
+                    containerTwo.append(x);
+                    x.append(span[index]);
+                    x.append(color[index]);
+                    x.append(norm[index]);
+                    x.append(colorOne[index]);
+                    x.classList.add('item')
+                    color[index].classList.add('square')
+                    norm[index].classList.add('square')
+                    span[index].classList.add('span')
+                    colorOne[index].classList.add('square')
+                });
+                containerTwo.append(itemBottom)
+                itemBottom.append(span[2])
+                itemBottom.append(span[3])
+                span.forEach((y, index) => {
+                    y.append(proArr[index])
+                });
+
+                //顏色+規格
+                //color[0].append(mainColor[0])
+                color[index].append(mainColor[0])
+                norm[index].append(mainColor[1])
+                colorOne[index].append(mainColor[2])
+                mainColor[0].classList.add('color-blue')
+                mainColor[1].classList.add('color-purple')
+                mainColor[2].classList.add('color-black')
+
+                color[1].innerHTML = '128GB<br>NT$27,900';
+                norm[1].innerHTML = '256GB<br>NT$31,400';
+                colorOne[1].innerHTML = '512GB<br>NT$38,400';
+
+                //鎖規格
+                color[1].disabled = true
+                norm[1].disabled = true
+                colorOne[1].disabled = true
+                //iphone
+                color[index].addEventListener('click', function () {
+                    img.src = appleData[0].mode[0].img
+                    
+                    color[1].disabled = false
+                    norm[1].disabled = false
+                    colorOne[1].disabled = false
+                    color[1].addEventListener('click', function () {
+                        span[3].innerHTML = appleData[0].mode[0].price;
+                    })
+                    norm[1].addEventListener('click', function () {
+                        span[3].innerHTML = appleData[0].mode[1].price
+                    })
+                    colorOne[1].addEventListener('click', function () {
+                        span[3].innerHTML = appleData[0].mode[2].price
+                    })
+                });
+                norm[index].addEventListener('click', function () {
+                    img.src = appleData[0].mode[4].img
+                    
+                })
+                colorOne[index].addEventListener('click', function () {
+                    img.src = appleData[0].mode[7].img
+                })
+
+                
+                //ipad
+                // color[0].addEventListener('click', function () {
+                //     img.src = appleData[2].mode[0].img
+                //     color[1].disabled = false
+                //     norm[1].disabled = false
+                //     colorOne[1].disabled = false
+                //     color[1].addEventListener('click', function () {
+                //         span[3].innerHTML = appleData[0].mode[0].price;
+                //     })
+                //     norm[1].addEventListener('click', function () {
+                //         span[3].innerHTML = appleData[0].mode[1].price
+                //     })
+                //     colorOne[1].addEventListener('click', function () {
+                //         span[3].innerHTML = appleData[0].mode[2].price
+                //     })
+                // });
+            })
+            
+            
+
+        })
+
+
+    </script>
+
+</body>
+
+</html>
