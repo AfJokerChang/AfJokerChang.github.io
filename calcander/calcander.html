@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        h1 {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .table {
+            background-color: rgb(131, 181, 211);
+        }
+        ul{
+            /* overflow-y: scroll; */
+            height: 50px;
+        }
+        li{
+            list-style: none;
+           
+        }
+        table{
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="year-month">0000年 -00月</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <button onclick="up()" class="btn btn-primary"><</button>
+    <button onclick="next()" class="btn btn-primary">></button>
+
+    <!-- 新增行程 -->
+    <div id="add-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">新增</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <input id="add-date" type="text"> -->
+                    <span id="add-date"></span><br>
+                    <input id="add-value" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button onclick="addItem()" type="button" class="btn btn-primary">新增</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 修改行程 -->
+    <div id="edit-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">編輯</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- <input id="edit-date" type="text"> -->
+                    <span id="edit-date"></span><br>
+                    <input id="edit-value" type="text">
+                </div>
+                <div class="modal-footer">
+                    <button onclick="deleteItem()" type="button" class="btn btn-danger">刪除</button>
+                    <button onclick="editItem()" type="button" class="btn btn-primary">修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let today = new Date()
+        let year = today.getFullYear()
+        let month = today.getMonth()
+        let currentIndex
+        let monthArr = ["January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"];
+        let yearMonthText = document.querySelector('.year-month')
+        let date = document.querySelector('tbody')
+        let addModal = document.querySelector('#add-modal')
+        let editModal = document.querySelector('#edit-modal')
+
+        let addDate = document.querySelector('#add-date')
+        let editDate = document.querySelector('#edit-date')
+        let addTitle = document.querySelector('#add-value')
+        let editTitle = document.querySelector('#edit-value')
+        function rundate() {
+            date.innerText = '';
+            yearMonthText.innerText = `${year}年${monthArr[month]}月`
+
+            let firstWeekDay = new Date(year, month, 1).getDay()
+            let dayOfMonth = new Date(year, month + 1, 0).getDate()
+            let hight = Math.ceil((dayOfMonth + firstWeekDay) / 7)
+            let day = 1
+
+            for (let i = 0; i < hight; i++) {
+                let tr = document.createElement('tr')
+                for (let j = 0; j < 7; j++) {
+                    let td = document.createElement('td')
+
+                    if (i == 0 && j < firstWeekDay) {
+                        td.innerText = '';
+                    }
+                    else {
+                        if (day <= dayOfMonth) {
+                            let d = day
+                            td.innerText = day
+
+                            if (localStorage.getItem(`${year}-${month+1}-${day}`) != null) {
+                                let ul = document.createElement('ul')
+
+                                let todoList = JSON.parse(localStorage.getItem(`${year}-${month+1}-${day}`))
+                                todoList.forEach((item, index) => {
+                                    let li = document.createElement('li')
+                                    li.innerText = item.title
+
+                                    li.onclick = function(e) {
+                                        editDate.innerText = `${year}-${month+1}-${d}`
+                                        editTitle.value = item.title
+
+                                        currentIndex = index
+
+                                        bootstrap.Modal.getOrCreateInstance(editModal).show()
+                                        e.stopPropagation()
+                                    }
+                                    
+                                    ul.appendChild(li)
+                                })
+                                td.appendChild(ul)
+                            }
+
+                            td.onclick = function () {
+                                addDate.innerText = `${year}-${month + 1}-${d}`
+                                bootstrap.Modal.getOrCreateInstance(addModal).show()
+                            }
+
+
+                        }
+                        else {
+                            td.innerText = '';
+                        }
+                        day++;
+                    }
+                    tr.appendChild(td)
+                }
+                date.appendChild(tr)
+            }
+
+        }
+
+        function up() {
+            month--
+            if (month == -1) {
+                year--
+                month = 11
+            }
+            rundate()
+        }
+
+        function next() {
+            month++
+            if (month == 12) {
+                year++
+                month = 0
+            }
+            rundate()
+        }
+        function addItem(){
+            let dateOne =  addDate.innerText
+            let item = addTitle.value
+
+            let todoObj ={
+                title : item
+            }
+            let todoList = []
+            if(localStorage.getItem(dateOne) ==null){
+                todoList.push(todoObj)
+            }else{
+                todoList = JSON.parse(localStorage.getItem(dateOne))
+                todoList.push(todoObj)
+            }
+            localStorage.setItem(dateOne, JSON.stringify(todoList))
+            bootstrap.Modal.getOrCreateInstance(addModal).hide()
+            rundate()
+        }
+
+        function editItem(){
+            let dateOne = editDate.innerText
+            let item = editTitle.value
+
+            let todoList = JSON.parse(localStorage.getItem(dateOne))
+
+            todoList[currentIndex] = {
+                title: item
+            }
+            localStorage.setItem(dateOne, JSON.stringify(todoList))
+
+            bootstrap.Modal.getOrCreateInstance(editModal).hide()
+            rundate()
+        }
+
+        function deleteItem(){
+            let dateOne = editDate.innerText
+
+            let todoList = JSON.parse(localStorage.getItem(dateOne))
+            todoList.splice(currentIndex, 1)
+
+            localStorage.setItem(dateOne, JSON.stringify(todoList))
+
+            bootstrap.Modal.getOrCreateInstance(editModal).hide()
+            rundate()
+        }
+        window.onload = function () {
+            rundate()
+        }
+    </script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+     crossorigin="anonymous"></script>
+</body>
+
+</html>
