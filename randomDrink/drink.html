@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <style>
+    .container {
+      margin-top: 30px;
+    }
+
+    [box-id] {
+      height: 170px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      transition: 0.5s;
+    }
+
+    [box-id].active {
+      border: solid 10px rgb(74, 193, 249);
+      box-shadow: 0 0 30px rgb(74, 193, 249);
+      transition: 0;
+    }
+
+    #msg {
+      font-size: 50px;
+      text-align: center;
+    }
+
+    img {
+      width: 100px;
+    }
+
+    .row {
+      align-items: center;
+
+    }
+
+    .popo {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div box-id="1" class="col-4 "></div>
+      <div box-id="2" class="col-4"></div>
+      <div box-id="3" class="col-4"></div>
+    </div>
+    <div class="row">
+      <div box-id="4" class="col-4"></div>
+      <div id="msg" class="col-4"></div>
+      <div box-id="5" class="col-4"></div>
+    </div>
+    <div class="row">
+      <div box-id="6" class="col-4"></div>
+      <div box-id="7" class="col-4"></div>
+      <div box-id="8" class="col-4"></div>
+    </div>
+    <div class="row ">
+      <div class="col-12 popo">
+        <button type="button" class="btn btn-outline-primary  w-50  ">請按</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script>
+    let drinkData = [
+      {
+        id: '1',
+        drinkName: '50嵐',
+        logo: './drink/50嵐.png',
+        target: function () {
+          return '50嵐'
+        }
+      },
+      {
+        id: '2',
+        drinkName: '可不可',
+        logo: './drink/可不可.png',
+        target: function () {
+          return '可不可'
+        }
+      },
+      {
+        id: '3',
+        drinkName: '茶湯會',
+        logo: './drink/茶湯會.jpg',
+        target: function () {
+          return '茶湯會'
+        }
+      },
+      {
+        id: '4',
+        drinkName: '先喝道',
+        logo: './drink/先喝道.jpg',
+        target: function () {
+          return '先喝道'
+        }
+      },
+      {
+        id: '5',
+        drinkName: '一沐日',
+        logo: './drink/一沐日.jpg',
+        target: function () {
+          return '一沐日'
+        }
+      },
+      {
+        id: '6',
+        drinkName: 'combuy',
+        logo: './drink/combuy.jpg',
+        target: function () {
+          return 'combuy'
+        }
+      },
+      {
+        id: '7',
+        drinkName: 'coco',
+        logo: './drink//COCO.png',
+        target: function () {
+          return 'coco'
+        }
+      },
+      {
+        id: '8',
+        drinkName: '迷克夏',
+        logo: './drink/迷克夏.png',
+        target: function () {
+          return '迷克夏'
+        }
+      },
+      {
+        id: '9',
+        drinkName: '烏弄',
+        logo: './drink/屋弄.png',
+        target: function () {
+          return '烏弄'
+        }
+      },
+    ]
+
+    let drink;
+    let spend;
+    let steps = 0
+    let allsteps = 0
+    let current = 0
+
+    let StartBtn = document.querySelector('button')
+    let msgBox = document.querySelector('#msg')
+
+    function happyDrink() {
+      drink = document.querySelectorAll('[box-id]')
+      // drink = Array.from(drink).sort((a, b) => {
+      //   return a.getAttributeNode('box-id').value - b.getAttributeNode('box-id').value
+      // })
+      
+
+      drink.forEach((x, index) => {
+        let id = x.getAttributeNode('box-id').value
+        let data = drinkData.find(x => x.id == id)
+        let drinkMaterial = document.createElement('img')
+        let drinkText = document.createElement('span')
+        drinkMaterial.setAttribute('src', data.logo)
+        drinkText.innerText = drinkData[index].drinkName
+        x.appendChild(drinkMaterial)
+        x.appendChild(drinkText)
+
+      })
+    }
+    function go() {
+      speed = 150
+      let random = Math.floor(Math.random() * drinkData.length) + 1
+      //steps = random v1
+      steps = random + (5 * drink.length)  //v2 多跑幾圈
+      allSteps = steps
+      goGoGo()
+    }
+    function goGoGo() {
+      drink[current].classList.remove('active')
+      current++
+
+      if (current >= drink.length) current = 0
+
+      drink[current].classList.add('active')
+      steps--
+
+
+      if (steps > 0) {
+        setTimeout(goGoGo, speed)
+
+
+        if (steps < Math.floor((allSteps / 3))) speed += 10
+      } else {
+        msg.innerText = drinkData[current].target()
+      }
+    }
+    window.onload = function () {
+      happyDrink()
+      StartBtn.addEventListener('click', () => {
+        go()
+      })
+    }
+  </script>
+</body>
+
+</html>
