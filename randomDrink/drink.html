@@ -17,9 +17,6 @@
 
     [box-id] {
       height: 170px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       border: none;
       transition: 0.5s;
     }
@@ -39,10 +36,6 @@
       width: 100px;
     }
 
-    .row {
-      align-items: center;
-
-    }
 
     .popo {
       display: flex;
@@ -56,11 +49,16 @@
 
     i {
       font-size: 100px;
-      margin-right: 20px;
-      
     }
-    [box-id] span{
-    
+    .icon-div{
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    .drinkText-div{
+      text-align: center;
+      font-size: 20px;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -72,7 +70,7 @@
         <h2 id="msg"></h2>
       </div>
     </div>
-    <div class="row">
+    <div class="row ">
       <div box-id="1" class="col-4 "></div>
       <div box-id="2" class="col-4"></div>
       <div box-id="3" class="col-4"></div>
@@ -151,7 +149,7 @@
       },
       {
         id: '6',
-        drinkName: 'comebuy',
+        drinkName: 'combuy',
         logo: "fa-solid fa-glass-water",
         color:'rgb(176,144,111)',
         target: function () {
@@ -198,22 +196,26 @@
 
     function happyDrink() {
       drink = document.querySelectorAll('[box-id]')
-      // drink = Array.from(drink).sort((a, b) => {
-      //   return a.getAttributeNode('box-id').value - b.getAttributeNode('box-id').value
-      // })
-
 
       drink.forEach((x, index) => {
         let id = x.getAttributeNode('box-id').value
         let data = drinkData.find(x => x.id == id)
+
         let drinkMaterial = document.createElement('i')
         let drinkText = document.createElement('span')
+        let drinkTextDiv = document.createElement('div')
+        let iconDiv = document.createElement('div')
+
         drinkMaterial.setAttribute('class', data.logo)
-        console.log(drinkMaterial)
+        iconDiv.classList.add('icon-div')
+        drinkTextDiv.classList.add('drinkText-div')
         drinkText.innerText = drinkData[index].drinkName
         drinkMaterial.style.color = data.color
-        x.appendChild(drinkMaterial)
-        x.appendChild(drinkText)
+
+        x.appendChild(iconDiv)
+        x.appendChild(drinkTextDiv)
+        iconDiv.appendChild(drinkMaterial)
+        drinkTextDiv.appendChild(drinkText)
 
       })
     }
