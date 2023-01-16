@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="/MAIKON/grid.css">
     <title>Document</title>
     <style>
+        .title,
         .main,
         .game {
             display: flex;
             justify-content: center;
         }
-
 
         .main button {
             padding: 20px 30px;
@@ -27,39 +27,39 @@
             margin-right: auto;
         }
 
-        span {
-            display: block;
-        }
-
-        .see span+span {
-            border-bottom: 1px solid black;
-        }
-
         .game input {
-            padding: 10px 13px;
+            padding: 10px 9px;
         }
 
         .game button {
             padding: 10px 30px;
 
         }
+
+        .number {
+            color: red;
+            font-weight: 900;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-            <div class=" col-12 main">
-                <button class="go">Go</button>
-                <button class="reset">Reset</button>
-                <button class="answer">Answer</button>
-            </div>
-            <div class="col-12 see">
-                <span></span>
-            </div>
-            <div class="col-12 game">
-                <input type="text" class="input">
-                <button class=" guess">guess</button>
-            </div>
+        <div class="title">
+            <h1>歡迎參加 1A2B 的遊戲</h1>
+        </div>
+        <div class=" col-12 main">
+            <button class="go">Go</button>
+            <button class="reset">Reset</button>
+            <button class="answer">Answer</button>
+        </div>
+        <div class="col-12 see">
+            <p></p>
+        </div>
+        <div class="col-12 game">
+            <input type="text" class="input">
+            <button class=" guess">guess</button>
+        </div>
     </div>
     <script>
         let go = document.querySelector(".go")
@@ -67,19 +67,15 @@
         let answer = document.querySelector('.answer')
         let guess = document.querySelector('.guess')
         let input = document.querySelector('.input')
-        let span = document.querySelector('span')
-
+        let p = document.querySelector('p')
         let a = [];
         let number = '';
         let count = 10;
         let ansArr = []
         let gusArr = []
-        c = 0
-        d = 0
         reset.disabled = true
         answer.disabled = true
         guess.disabled = true
-
 
         //設四個不一樣的數字
         function asd() {
@@ -94,6 +90,7 @@
         }
         //開始
         go.addEventListener('click', function () {
+            ansArr = []; 
             a = asd();
             number = `${a[0]}${a[1]}${a[2]}${a[3]}`
             ansArr.push(number.charAt(0))
@@ -101,7 +98,7 @@
             ansArr.push(number.charAt(2))
             ansArr.push(number.charAt(3))
             console.log(ansArr)
-
+        
             go.disabled = true
             reset.disabled = false
             answer.disabled = false
@@ -113,18 +110,11 @@
         })
         //重新
         reset.addEventListener('click', function () {
-            a = asd();
-            ansArr = [];
-            number = `${a[0]}${a[1]}${a[2]}${a[3]}`
-            ansArr.push(number.charAt(0))
-            ansArr.push(number.charAt(1))
-            ansArr.push(number.charAt(2))
-            ansArr.push(number.charAt(3))
-            console.log(ansArr)
-            input.value = '';
-            span.innerText = '';
-            c = 0
-            d = 0
+            p.innerText = '';
+            go.disabled =false
+            reset.disabled = true
+            answer.disabled = true
+            guess.disabled = true
         })
         //猜
         guess.addEventListener('click', function () {
@@ -162,16 +152,12 @@
             let c = intersectionArr.filter(x => ansArr.indexOf(x) == gusArr.indexOf(x)).length
 
             let d = intersectionArr.length - c
-            if(c ==4){
+            if (c == 4) {
                 alert('恭喜破關')
             }
-            span.append(`${c}A${d}B  `, input.value);
-
-            let qqq = document.createElement('br')
-            span.append(qqq)
+            //span.append(`${c}A${d}B  `, input.value);
+            p.innerHTML += `<span class="number">${c}A${d}B</span>  ` + `${input.value}<br>`
             input.value = '';
-            c = 0
-            d = 0
         })
 
     </script>
