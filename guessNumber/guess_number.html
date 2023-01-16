@@ -97,7 +97,6 @@
             ansArr.push(number.charAt(1))
             ansArr.push(number.charAt(2))
             ansArr.push(number.charAt(3))
-            console.log(ansArr)
         
             go.disabled = true
             reset.disabled = false
@@ -155,7 +154,6 @@
             if (c == 4) {
                 alert('恭喜破關')
             }
-            //span.append(`${c}A${d}B  `, input.value);
             p.innerHTML += `<span class="number">${c}A${d}B</span>  ` + `${input.value}<br>`
             input.value = '';
         })
