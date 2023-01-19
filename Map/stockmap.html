@@ -52,32 +52,32 @@
         crossorigin="anonymous"></script>
     <div class="container">
         <div class="row py-5">
-            <div class="col-6">
+            <div class="col-6 col-xl-6">
                 <div id="map"></div>
             </div>
-            <div class="col-6">
+            <div class="col-6 col-xl-6">
                 <div class="row">
-                    <div class="col-6">
-                        <select id="date" class="form-control"></select>
+                    <div class="col-6 col-xl-6">
+                        <!-- <select id="date" class="form-control"></select> -->
                     </div>
-                    <div class="form-group col-6">
+                    <div class="form-group col-6 col-xl-6">
                         <label for="country">國家</label>
                         <select id="country" class="form-control">
                         </select>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12 col-xl-12">
                         <h2 class="w-100 text-center">
                             <strong class="strong-country"></strong>主要股價指數
                         </h2>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6 material">
+                    <div class="col-6 material col-xl-6">
 
                     </div>
-                    <div class="col-6 materialTwo">
+                    <div class="col-6 materialTwo col-xl-6">
 
                     </div>
                 </div>
@@ -191,13 +191,13 @@
                 option.value = country == '請選擇' ? '' : country
                 everyOneCountry.appendChild(option)
             });
-            ['請選擇', ...new Set(stockData.map(x => x.yearMonth))].forEach(yearMonth => {
-                let option = document.createElement('option')
-                option.innerText = yearMonth
-                option.value = yearMonth == '請選擇' ? '' : yearMonth
-                dateDom.appendChild(option)
+            // ['請選擇', ...new Set(stockData.map(x => x.yearMonth))].forEach(yearMonth => {
+            //     let option = document.createElement('option')
+            //     option.innerText = yearMonth
+            //     option.value = yearMonth == '請選擇' ? '' : yearMonth
+            //     dateDom.appendChild(option)
 
-            });
+            // });
             everyOneCountry.onchange = function () {
                 if (this.value != '') {
                     let county = countryLagData.find(x => x.countryCity == this.value)
