@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --main-pink: #A27F82;
+            --dark-gray: #56565E;
+            --light-gray: #D3C9C9;
+            --peach-pink: #E3A4A4;
+            --light-pink: #FEF4F6;
+        }
+
+
+        #open-bar5,
+        #order-open-bar5,
+        #marketing-open-bar5,
+        #sale-open-bar5,
+        #line-open-bar5 {
+            display: none;
+        }
+
+        /* 導覽列底色 */
+        .seller-nav5 {
+            background-color: var(--dark-gray);
+            position: absolute;
+            /* width: 230px; */
+            top: 0;
+            left: -100%;
+            transition: 0.4s;
+            height: 100vh;
+        }
+
+        .logo5 {
+            display: flex;
+            margin: 10px;
+            padding-top: 10px;
+        }
+
+        .logo5 p {
+            color: white;
+            margin-left: 2px;
+        }
+
+        .seller-front-page5,
+        .seller-main-function5 {
+            display: flex;
+            margin: 40px 15px;
+        }
+
+        .seller-front-page5 a {
+            text-decoration: none;
+            color: white;
+            opacity: 50%;
+        }
+
+        .seller-main-function5 label {
+            width: 184px;
+        }
+
+        /* 主題顏色 */
+        .seller-front-page5 i,
+        .seller-main-function5 i,
+        .seller-main-function5 h2 {
+            color: white;
+            opacity: 50%;
+        }
+
+        .seller-front-page5 i,
+        .seller-main-function5 i {
+            padding-right: 10px;
+        }
+
+        /* 子層設定 */
+        .seller-item5 {
+            position: absolute;
+            top: 0;
+            width: 40%;
+            right: 0;
+            transition: 0.5s;
+            opacity: 0;
+
+        }
+
+        .seller-item5 li {
+            padding-bottom: 30px;
+            padding-left: 10px;
+        }
+
+        .logo5 {
+            display: flex;
+            margin: 10px;
+            align-items: center;
+            padding-top: 10px;
+        }
+
+        .logo5 img {
+            width: 30px;
+        }
+
+        .phone-header-icon5 {
+            display: block;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        /* 子層飛出來 */
+        #open-bar5:checked~.seller-nav5 .seller-main-function5 .label-open-bar5>ul,
+        #marketing-open-bar5:checked~.seller-nav5 .seller-main-function5 .label-marketing-open-bar5>ul,
+        #order-open-bar5:checked~.seller-nav5 .seller-main-function5 .label-order-open-bar5>ul,
+        #sale-open-bar5:checked~.seller-nav5 .seller-main-function5 .label-sale-open-bar5>ul,
+        #line-open-bar5:checked~.seller-nav5 .seller-main-function5 .label-data-open-bar5>ul {
+            display: block;
+            background-color: black;
+            color: white;
+            width: 198px;
+            height: 100vh;
+            opacity: 100%;
+        }
+
+
+        /* 主層消失 */
+        #open-bar5:checked~.seller-nav5 .seller-main-function5 h2,
+        #order-open-bar5:checked~.seller-nav5 .seller-main-function5 h2,
+        #marketing-open-bar5:checked~.seller-nav5 .seller-main-function5 h2,
+        #sale-open-bar5:checked~.seller-nav5 .seller-main-function5 h2,
+        #line-open-bar5:checked~.seller-nav5 .seller-main-function5 h2 {
+            display: none;
+        }
+
+        /* 子層icon消失 */
+        #open-bar5:checked~.seller-nav5 .seller-main-function5 .icon5,
+        #order-open-bar5:checked~.seller-nav5 .seller-main-function5 .icon5,
+        #marketing-open-bar5:checked~.seller-nav5 .seller-main-function5 .icon5,
+        #sale-open-bar5:checked~.seller-nav5 .seller-main-function5 .icon5,
+        #line-open-bar5:checked~.seller-nav5 .seller-main-function5 .icon5 {
+            display: none;
+        }
+
+        #phone-menu-control5 {
+            display: none;
+        }
+
+        .HB5 {
+            width: 40px;
+            height: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            transition: 0.5s;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .HB5 span {
+            width: 40%;
+            height: 3px;
+            background-color: black;
+
+        }
+
+        .phone-header-icon5 i {
+            font-size: 25px;
+            margin: 0 15px;
+        }
+
+        /* 按漢堡彈出nav */
+        #phone-menu-control5:checked~.container .seller-nav5 {
+            display: block;
+            left: 0;
+            height: 100vh;
+        }
+
+        /* 當nav彈出漢堡一起往右移 */
+        #phone-menu-control5:checked~.container .HB5 {
+            position: absolute;
+            left: 250px;
+        }
+
+        .label-open-bar5,
+        .label-order-open-bar5,
+        .label-marketing-open-bar5,
+        .label-sale-open-bar5,
+        .label-data-open-bar5 {
+            display: flex;
+        }
+
+        /* 打開子層的icon */
+        .label-marketing-open-bar5 i {
+            margin-left: 95px;
+            transform: rotate(90deg);
+        }
+
+        /* 主層icon */
+        .label-open-bar5 i,
+        .label-order-open-bar5 i,
+        .label-sale-open-bar5 i,
+        .label-data-open-bar5 i {
+            margin-left: 91px;
+            transform: rotate(90deg);
+        }
+
+        /* 子層叉叉 */
+        .seller-item5 i {
+            margin-left: 172px;
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+        /* 按叉叉關掉子層 */
+        /* 待修改 */
+        /* #open-bar5:checked~.seller-nav5 .seller-main-function5 .seller-item5,
+        #order-open-bar5~.seller-nav5 .seller-main-function5 .seller-item5,
+        #marketing-open-bar5~.seller-nav5 .seller-main-function5 .seller-item5,
+        #sale-open-bar5~.seller-nav5 .seller-main-function5 .seller-item5,
+        #line-open-bar5~.seller-nav5 .seller-main-function5 .seller-item5 {
+            position: absolute;
+            top: 0;
+            width: 40%;
+            right: 0;
+            transition: 0.5s;
+            opacity: 0;
+            display: none;
+        } */
+
+
+
+        @media screen and (min-width:768px) {
+            .seller-nav5 {
+                display: block;
+                top: 0;
+                left: 0;
+                transition: 0s;
+            }
+
+            /* .phone-header-icon5 {
+                display: none;
+            } */
+
+            .HB5 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <input type="checkbox" id="phone-menu-control5">
+
+    <div class="container">
+        <div class="rol">
+            <div class="col-4 col-md-2 ">
+                <div>
+                    <label for="phone-menu-control5" class="HB5">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                </div>
+                <div class="phone-header-icon5">
+                    <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+                    <a href=""><i class="fa-regular fa-comment"></i></a>
+                    <a href=""><i class="fa-solid fa-shop"></i></a>
+                </div>
+                <input type="checkbox" id="open-bar5">
+                <input type="checkbox" id="order-open-bar5">
+                <input type="checkbox" id="marketing-open-bar5">
+                <input type="checkbox" id="sale-open-bar5">
+                <input type="checkbox" id="line-open-bar5">
+
+                <nav class="seller-nav5">
+                    <div class="logo5">
+                        <img src="./hatsukoi_icon.svg" alt="">
+                        <p>設計館管理平台</p>
+                    </div>
+
+                    <ul class="seller-front-page5"><i class="fa-solid fa-house"></i><a href="#">首頁</a></ul>
+
+                    <div class="seller-main-function5">
+                        <i class="fa-solid fa-gift"></i>
+                        <label for="open-bar5" class="label-open-bar5">
+                            <h2>商品管理</h2>
+                            <i class="fa-solid fa-chevron-up icon5"></i>
+                            <ul class="seller-item5">
+                                <i class="fa-solid fa-xmark"></i>
+                                <li>商品管理</li>
+                                <li>所有商品</li>
+                                <li>主打商品</li>
+                                <li>商品自訂排序</li>
+                                <li>建立商品</li>
+                            </ul>
+                        </label>
+
+                    </div>
+
+                    <div class="seller-main-function5">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <label for="order-open-bar5" class="label-order-open-bar5">
+                            <h2>訂單管理</h2>
+                            <i class="fa-solid fa-chevron-up icon5"></i>
+                            <ul class="seller-item5">
+                                <i class="fa-solid fa-xmark"></i>
+                                <li>訂單管理</li>
+                                <li>所有訂單</li>
+                                <li>評價管理</li>
+                            </ul>
+                        </label>
+                    </div>
+
+                    <div class="seller-main-function5">
+                        <i class="fa-regular fa-lightbulb "></i>
+                        <label for="marketing-open-bar5" class="label-marketing-open-bar5">
+                            <h2>行銷工具</h2>
+                            <i class="fa-solid fa-chevron-up icon5"></i>
+                            <ul class="seller-item5">
+                                <i class="fa-solid fa-xmark"></i>
+                                <li>行銷工具</li>
+                                <li></li>
+                            </ul>
+                        </label>
+                    </div>
+
+                    <div class="seller-main-function5">
+                        <i class="fa-solid fa-sack-dollar "></i>
+                        <label for="sale-open-bar5" class="label-sale-open-bar5">
+                            <h2>營銷管理</h2>
+                            <i class="fa-solid fa-chevron-up icon5"></i>
+                            <ul class="seller-item5">
+                                <i class="fa-solid fa-xmark"></i>
+                                <li>營銷管理</li>
+                                <li>銷售狀況</li>
+                                <li>圖表</li>
+                            </ul>
+                        </label>
+                    </div>
+
+                    <div class="seller-main-function5">
+                        <i class="fa-solid fa-chart-line"></i>
+                        <label for="line-open-bar5" class="label-data-open-bar5">
+                            <h2>數據中心</h2>
+                            <i class="fa-solid fa-chevron-up icon5"></i>
+                            <ul class="seller-item5 one">
+                                <i class="fa-solid fa-xmark"></i>
+                                <li>數據中心</li>
+                                <li></li>
+                            </ul>
+                        </label>
+                    </div>
+
+                </nav>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+    // let sellerMainFunction = document.querySelector('.seller-main-function5')
+    // const  product = document.querySelector('.one')
+    // console.log(product)
+    // product.addEventListener('click',() =>{
+    //     let ul = document.createElement(ul)
+    //     let li1 = document.createElement(li)
+    //     let li2 = document.createElement(li)
+    //     let li3 = document.createElement(li)
+    //     let li4 = document.createElement(li)
+    //     li1.innerHTML ='所有商品'
+    //     li2.innerHTML ='所有商品'
+    //     li3.innerHTML ='所有商品'
+    //     li4.innerHTML ='所有商品'
+    //      ul.appendChild(li1)
+    //      ul.appendChild(li2)
+    //      ul.appendChild(li3)
+    //      ul.appendChild(li4)
+    //     sellerMainFunction.appendChild(ul)
+    // })
+    </script>
+</body>
+
+</html>
