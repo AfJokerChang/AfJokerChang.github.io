@@ -15,16 +15,7 @@
     display: none;
 }
 
-/* 導覽列底色 */
-.seller-nav5 {
-    background-color: var(--dark-gray);
-    position: absolute;
-    /* width: 230px; */
-    top: 0;
-    left: -100%;
-    transition: 0.4s;
-    height: 100vh;
-}
+
 
 .logo5 {
     display: flex;
@@ -50,7 +41,7 @@
 }
 
 .seller-main-function5 label {
-    width: 184px;
+    width: 185px;
 }
 
 /* 主題顏色 */
@@ -69,12 +60,10 @@
 /* 子層設定 */
 .seller-item5 {
     position: absolute;
-    top: 0;
+    top: -100%;
     width: 40%;
     right: 0;
-    transition: 0.5s;
-    opacity: 0;
-    display: none;
+    transition: 0.6s;
 }
 
 .seller-item5 li {
@@ -84,21 +73,21 @@
 
 .logo5 {
     display: flex;
-    margin: 10px;
+    /* margin: 10px; */
     align-items: center;
-    padding-top: 10px;
+    /* padding-top: 10px; */
 }
 
 .logo5 img {
     width: 30px;
 }
 
-.phone-header-icon5 {
+/* .phone-header-icon5 {
     display: block;
     position: absolute;
     top: 20px;
     right: 20px;
-}
+} */
 
 /* 子層飛出來 */
 #open-bar5:checked~.seller-nav5 .seller-main-function5 .label-open-bar5>ul,
@@ -106,12 +95,11 @@
 #order-open-bar5:checked~.seller-nav5 .seller-main-function5 .label-order-open-bar5>ul,
 #sale-open-bar5:checked~.seller-nav5 .seller-main-function5 .label-sale-open-bar5>ul,
 #line-open-bar5:checked~.seller-nav5 .seller-main-function5 .label-data-open-bar5>ul {
-    display: block;
-    background-color: black;
+    background-color: var(--dark-gray);
     color: white;
     width: 198px;
     height: 100vh;
-    opacity: 100%;
+    top: 0;
 }
 
 
@@ -137,6 +125,18 @@
     display: none;
 }
 
+/* 導覽列 */
+.seller-nav5 {
+    /* display: none; */
+    background-color: var(--dark-gray);
+    top: 0;
+    left: -130%;
+    transition: 0.4s;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+}
+
 .HB5 {
     width: 40px;
     height: 20px;
@@ -146,7 +146,8 @@
     transition: 0.5s;
     position: absolute;
     top: 20px;
-    left: 20px;
+    left: 10px;
+    z-index: 1;
 }
 
 .HB5 span {
@@ -162,14 +163,13 @@
 }
 
 /* 按漢堡彈出nav */
-#phone-menu-control5:checked~.container .seller-nav5 {
-    display: block;
-    left: 0;
+#phone-menu-control5:checked~.seller-nav5 {
     height: 100vh;
+    left: 0;
 }
 
 /* 當nav彈出漢堡一起往右移 */
-#phone-menu-control5:checked~.container .HB5 {
+#phone-menu-control5:checked~.repot-HB .HB5 {
     position: absolute;
     left: 250px;
 }
@@ -188,7 +188,7 @@
     transform: rotate(90deg);
 }
 
-/* 主層icon */
+/* 打開子層的icon */
 .label-open-bar5 i,
 .label-order-open-bar5 i,
 .label-sale-open-bar5 i,
@@ -204,24 +204,6 @@
     font-size: 20px;
 }
 
-/* 按叉叉關掉子層 */
-/* 待修改 */
-/* #open-bar5:checked~.seller-nav5 .seller-main-function5 .seller-item5,
-        #order-open-bar5~.seller-nav5 .seller-main-function5 .seller-item5,
-        #marketing-open-bar5~.seller-nav5 .seller-main-function5 .seller-item5,
-        #sale-open-bar5~.seller-nav5 .seller-main-function5 .seller-item5,
-        #line-open-bar5~.seller-nav5 .seller-main-function5 .seller-item5 {
-            position: absolute;
-            top: 0;
-            width: 40%;
-            right: 0;
-            transition: 0.5s;
-            opacity: 0;
-            display: none;
-        } */
-
-
-
 @media screen and (min-width:768px) {
     .seller-nav5 {
         display: block;
@@ -231,8 +213,8 @@
     }
 
     /* .phone-header-icon5 {
-                display: none;
-            } */
+        display: none;
+    } */
 
     .HB5 {
         display: none;
