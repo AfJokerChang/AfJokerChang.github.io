@@ -77,21 +77,12 @@
 
 .logo5 {
     display: flex;
-    /* margin: 10px; */
     align-items: center;
-    /* padding-top: 10px; */
 }
 
 .logo5 img {
     width: 30px;
 }
-
-/* .phone-header-icon5 {
-    display: block;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-} */
 
 /* 子層飛出來 */
 #open-bar5:checked~.seller-nav5 .seller-main-function5 .label-open-bar5>ul,
@@ -131,7 +122,6 @@
 
 /* 導覽列 */
 .seller-nav5 {
-    /* display: none; */
     background-color: var(--dark-gray);
     top: 0;
     left: -130%;
@@ -212,6 +202,71 @@
     margin: 20px;
 }
 
+.main-header {
+    background-color: var(--peach-pink);
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.main-header .checkbox {
+    opacity: 0;
+    display: none;
+}
+
+#search-control:checked~.searchbar {
+    top: 0;
+    transition: .5s;
+}
+
+#close-search:checked~.searchbar {
+    top: -80px;
+    transition: .5s;
+}
+
+.main-header .searchbar {
+    width: 100%;
+    position: absolute;
+    background-color: var(--peach-pink);
+    top: -130px;
+    right: 0;
+}
+
+.main-header .searchbar .btn-close {
+    border-radius: 0.375rem;
+}
+
+.main-header .searchbar button {
+    border: 1px solid #ced4da;
+}
+
+.main-header .searchbar .form-control {
+    border-top-left-radius: 0.375rem;
+    border-bottom-left-radius: 0.375rem;
+}
+
+.main-header .hamburger {
+    padding: 10px;
+}
+
+.main-header .icons .icon {
+    margin-left: 26px;
+}
+
+.main-header .icon,
+.main-header .icon a {
+    font-size: 18px;
+    color: var(--dark-gray);
+}
+
+.icons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
 @media screen and (min-width:768px) {
     .seller-nav5 {
         display: block;
@@ -220,9 +275,6 @@
         transition: 0s;
     }
 
-    /* .phone-header-icon5 {
-        display: none;
-    } */
 
     .HB5 {
         display: none;
