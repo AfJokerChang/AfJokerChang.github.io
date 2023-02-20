@@ -11,7 +11,7 @@
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../reset.css">
-    <link rel="stylesheet" href="./navCSS.css">
+    <link rel="stylesheet" href="../project/navCSS1.css">
     <link rel="stylesheet" href="./style.css">
     <style>
         :root {
@@ -20,6 +20,10 @@
             --light-gray: #D3C9C9;
             --peach-pink: #E3A4A4;
             --light-pink: #FEF4F6;
+        }
+
+        li {
+            list-style: none;
         }
 
         .one {
@@ -44,29 +48,16 @@
             background-color: var(--peach-pink);
         }
 
-        .report-bread {
-            display: flex;
-            /* margin-bottom: 20px; */
-            padding-bottom: 5px;
-            border-bottom: 1px black solid;
-            list-style: none;
-            justify-content: space-around;
-        }
-
+        .report-data-bread a,
         .report-bread a {
             text-decoration: none;
             color: var(--dark-gray);
-            /* margin-right: 15px; */
 
         }
 
         .report-bread button {
             border: none;
             background-color: white;
-        }
-
-        .item5 {
-            background-color: var(--light-pink);
         }
 
         .report-data h2,
@@ -131,6 +122,53 @@
             left: 500px;
         }
 
+
+        .report-bread-product .item5 {
+            border-bottom: 1px solid black;
+        }
+
+        .report-buy h2 {
+            margin: 20px 0;
+        }
+
+        .item5 :nth-child(1) {
+            width: 87.94px;
+        }
+
+        .report-little-abacus-table table {
+            width: 100%;
+        }
+
+        .report-buyer-item {
+            justify-content: space-around;
+            margin-top: 25px;
+        }
+
+        .report-buyer-item div:nth-child(2) {
+            border-left: 1px solid black;
+            padding-left: 10px;
+        }
+
+        .report-buyer-item span {
+            font-size: 15px;
+        }
+
+        .report-buyer-item p {
+            font-weight: 800;
+            padding: 10px 0 20px 0;
+        }
+
+        .report-data-bread {
+            display: flex;
+            padding-bottom: 5px;
+            border-bottom: 1px black solid;
+            justify-content: space-around;
+        }
+
+        .report-buyer-item {
+            display: flex;
+        }
+
         @media screen and (min-width:768px) {
             .report-little-abacus-laptop {
                 display: none;
@@ -147,25 +185,43 @@
                 padding: 25px 0;
             }
 
-            .report-little-abacus-table table {
-                width: 100%;
+            .item5 th {
+                width: 194.25px;
+
             }
 
-            .report-bread-product {
-                display: flex;
-                justify-content: end;
+            .item5 :nth-child(1) {
+                width: 266.2px;
             }
 
             .three {
                 margin-left: 100px;
-                /* position: absolute;
-                z-index: 1;
-                left: 260px;
-                width: 1200px; */
             }
-            .report-main{
+
+            .report-main {
                 padding-left: 200px;
             }
+
+            .report-buy-main {
+                display: flex;
+            }
+
+            .report-bread {
+                display: flex;
+                padding-bottom: 5px;
+                border-bottom: 1px black solid;
+                justify-content: space-around;
+            }
+
+            .report-buyer-item {
+                display: block;
+            }
+
+            .report-buyer-item div:nth-child(2) {
+                border-left: 0;
+                padding-left: 0;
+            }
+
         }
     </style>
 </head>
@@ -178,8 +234,11 @@
         <div class="icons">
             <input class="checkbox" type="checkbox" name="" id="search-control">
 
-            <span class="icon"> <label for="search-control" class="search"><i class="fa-solid fa-magnifying-glass"></i>
-                </label></span>
+            <span class="icon">
+                <label for="search-control" class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </label>
+            </span>
 
 
             <input class="checkbox" type="checkbox" name="" id="close-search">
@@ -193,9 +252,15 @@
                 <button class="btn btn btn-light" type="button" id="button-addon2"><i
                         class="fa-solid fa-magnifying-glass"></i></button>
             </div>
-            <span class="icon"><i class="fa-regular fa-message"></i></span>
+            <span class="icon">
+                <i class="fa-regular fa-message"></i>
+            </span>
 
-            <span class="icon"><a href=""><i class="fa-solid fa-store"></i></a></span>
+            <span class="icon">
+                <a href="#">
+                    <i class="fa-solid fa-store"></i>
+                </a>
+            </span>
         </div>
 
     </div>
@@ -357,11 +422,11 @@
                 </div>
                 <div class="report-data">
                     <h2>各項數據</h2>
-                    <ul class="report-bread">
+                    <ul class="report-data-bread">
                         <li><a href="">關鍵指標</a></li>
                         <li><a href="">訂單數據</a></li>
+                        <li><a href="">商品數據</a></li>
                         <li><a href="">買家數據</a></li>
-                        <li><a href="">廣告數據</a></li>
                     </ul>
                 </div>
                 <div class="report-data-div report-necessaary">
@@ -395,16 +460,24 @@
                         <option value="">2023/03-04</option>
                         <option value="">2023/05-06</option>
                     </select>
-                    <div class="report-bread report-bread-product">
-                        <li><button>瀏覽數</button></li>
-                        <li><button>收藏數</button></li>
-                        <li><button>銷量</button></li>
-                        <li><button>銷售額</button></li>
-
+                    <!-- 大項有必要? -->
+                    <div class="report-bread-product ">
+                        <table class="table">
+                            <thead>
+                                <tr class="item5">
+                                    <th scope="col"></th>
+                                    <th scope="col">瀏覽數</th>
+                                    <th scope="col">收藏數</th>
+                                    <th scope="col">銷量</th>
+                                    <th scope="col">銷售額</th>
+                                </tr>
+                            </thead>
+                        </table>
                     </div>
-                    <table class="table">
+                    <table class="table report-product-table">
                         <thead>
                             <tr class="item5">
+
                                 <th scope="col"></th>
                                 <th scope="col">瀏覽</th>
                                 <th scope="col">收藏</th>
@@ -444,39 +517,65 @@
                         </tbody>
                     </table>
                 </div>
-                <div>
+                <div class="report-data-div report-buy-main">
                     <!-- 買家數據 -->
-                    <h2>買家數據</h2>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <span>買家指標</span>
-                            <select class="form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>日期</option>
-                                <option value="">2023/01-02</option>
-                                <option value="">2023/03-04</option>
-                                <option value="">2023/05-06</option>
-                            </select>
-                        </div>
-                        <div class="col-md-8">
-                            <span>TOP5 買家</span>
-                            <select class="form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>日期</option>
-                                <option value="">2023/01-02</option>
-                                <option value="">2023/03-04</option>
-                                <option value="">2023/05-06</option>
-                            </select>
-                            <div class="report-bread">
-                                <li><button>消費金額</button></li>
-                                <li><button>訂單數</button></li>
+                    <div class="col-12 col-md-6 report-buy ">
+                        <h2>買家數據</h2>
+                        <span>買家指標</span><br>
+                        <select class="form-select-sm report-option" aria-label=".form-select-sm example">
+                            <option selected>日期</option>
+                            <option value="">2023/01-02</option>
+                            <option value="">2023/03-04</option>
+                            <option value="">2023/05-06</option>
+                        </select>
+                        <div class="col-12 report-buyer-item">
+                            <div>
+                                <span>買家人數</span>
+                                <p>0%</p>
+                                <span>首購人數</span>
+                                <p>0</p>
+                                <span>佔所有買家人數</span>
+                                <p>0%</p>
                             </div>
                             <div>
-                                <!-- JS長出資料 -->
+                                <span>回購率</span>
+                                <p>0%</p>
+                                <span>買家為關注者人數</span>
+                                <p>0</p>
+                                <span>佔所有買家人數</span>
+                                <p>0%</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <!-- 廣告數據 -->
+                    <div class="col-12 col-md-6 mt-5">
+                        <span>TOP5 買家</span><br>
+                        <select class="form-select-sm report-option" aria-label=".form-select-sm example">
+                            <option selected>日期</option>
+                            <option value="">2023/01-02</option>
+                            <option value="">2023/03-04</option>
+                            <option value="">2023/05-06</option>
+                        </select>
+                        <div class="tablist mb-3">
+                            <div class="nav nav-pills" id="pills-tab" role="tablist">
+                                <div class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-tobeshipped-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-tobeshipped" type="button" role="tab"
+                                        aria-controls="pills-tobeshipped" aria-selected="true">消費金額<span
+                                            class="count"></span></button>
+                                </div>
+                                <div class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-shipped-tab" data-bs-toggle="pill"
+                                        data-bs-target="#pills-shipped" type="button" role="tab"
+                                        aria-controls="pills-shipped" aria-selected="false">訂單數<span
+                                            class="count"></span></button>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div>
+                            <!-- JS長出資料 -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
